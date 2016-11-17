@@ -14,7 +14,8 @@ def getExchangeRates():
     rates = []
     response = urllib2.urlopen('http://api.fixer.io/latest')
     data = response.read()
-    rdata = json.loads(data, parse_float=float)
+    # rdata = json.loads(data, parse_float=float) # Python 2.7
+    rdata = json.loads(data.decode()) # Python 3.5
 
     rates.append(rdata['rates']['USD'])
     rates.append(rdata['rates']['GBP'])
